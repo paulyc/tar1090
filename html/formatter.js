@@ -6,16 +6,19 @@ let DEGREES='\u00b0'
 let UP_TRIANGLE='\u25b2'; // U+25B2 BLACK UP-POINTING TRIANGLE
 let DOWN_TRIANGLE='\u25bc'; // U+25BC BLACK DOWN-POINTING TRIANGLE
 
-let TrackDirections = ["North","NE","East","SE","South","SW","West","NW"];
+let TrackDirections = ["N","NE","E","SE","S","SW","W","NW"];
 let TrackDirectionArrows = ["\u21e7","\u2b00","\u21e8","\u2b02","\u21e9","\u2b03","\u21e6","\u2b01"];
 
+let metricAltitudeUnit = 'ft';
 let UnitLabels = {
-	'altitude': { metric: "m", imperial: "ft", nautical: "ft"},
-	'speed': { metric: "km/h", imperial: "mph", nautical: "kt" },
-	'distance': { metric: "km", imperial: "mi", nautical: "NM" },
-	'verticalRate': { metric: "m/s", imperial: "ft/min", nautical: "ft/min" },
-	'distanceShort': {metric: "m", imperial: "ft", nautical: "m"}
+	altitude: { metric: metricAltitudeUnit, imperial: "ft", nautical: "ft"},
+	speed: { metric: "kph", imperial: "mph", nautical: "kt" },
+	distance: { metric: "km", imperial: "mi", nautical: "nm" },
+	verticalRate: { metric: "m/s", imperial: "fpm", nautical: "fpm" },
+	distanceShort: {metric: "m", imperial: "ft", nautical: "m"}
 };
+
+
 
 // formatting helpers
 
@@ -113,7 +116,7 @@ function format_onground (alt) {
 
 // alt in feet
 function convert_altitude(alt, displayUnits) {
-	if (displayUnits === "metric") {
+	if (displayUnits === "metric" && metricAltitudeUnit === 'm') {
 		return alt / 3.2808;  // feet to meters
 	}
 
@@ -527,4 +530,3 @@ function wqi(data) {
         data.aircraft.push(ac);
     }
 }
-
