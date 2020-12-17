@@ -2400,7 +2400,7 @@ function refreshFeatures() {
         sort: function () { sortBy('altitude',compareNumeric, function(x) { return (x.altitude == "ground" ? -100000 : x.altitude); }); },
         value: function(plane) { return format_altitude_brief(plane.altitude, plane.vert_rate, DisplayUnits); },
         align: 'right',
-        header: function () { return 'Altitude(' + get_unit_label("altitude", DisplayUnits) + ')';},
+        header: function () { return 'Alt(' + get_unit_label("altitude", DisplayUnits) + ')';},
     };
     cols.speed = {
         text: pTracks ? 'Max. Speed' : 'Speed',
@@ -2414,14 +2414,14 @@ function refreshFeatures() {
         sort: function () { sortBy('vert_rate', compareNumeric, function(x) { return x.vert_rate; }); },
         value: function(plane) { return format_vert_rate_brief(plane.vert_rate, DisplayUnits); },
         align: 'right',
-        header: function () { return 'V. Rate(' + get_unit_label("verticalRate", DisplayUnits) + ')';},
+        header: function () { return 'VRate(' + get_unit_label("verticalRate", DisplayUnits) + ')';},
     };
     cols.distance = {
         text: pTracks ? 'Max. Distance' : 'Distance',
         sort: function () { sortBy('sitedist',compareNumeric, function(x) { return x.sitedist; }); },
         value: function(plane) { return format_distance_brief(plane.sitedist, DisplayUnits); },
         align: 'right',
-        header: function () { return (pTracks ? 'Max. ' : '') + 'Dist.(' + get_unit_label("distance", DisplayUnits) + ')';},
+        header: function () { return (pTracks ? 'Max. ' : '') + 'Dist(' + get_unit_label("distance", DisplayUnits) + ')';},
     };
     cols.track = {
         text: 'Track',
@@ -2437,7 +2437,8 @@ function refreshFeatures() {
         text: 'Seen',
         sort: function () { sortBy('seen', compareNumeric, function(x) { return x.seen; }); },
         value: function(plane) { return plane.seen.toFixed(0); },
-        align: 'right' };
+        align: 'right',
+        header: () => 'Age' };
     cols.rssi = {
         text: 'RSSI',
         sort: function () { sortBy('rssi', compareNumeric, function(x) { return x.rssi; }); },
