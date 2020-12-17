@@ -27,7 +27,8 @@ let Planes        = {};
 let PlanesOrdered = [];
 let PlaneFilter   = {};
 let SelectedPlane = null;
-let SelectedAllPlanes = false;
+let SelectedAllPlanes = true;
+let AlwaysSelectedAllPlanes = true;
 let HighlightedPlane = null;
 let FollowSelected = false;
 let followPos = [];
@@ -2984,7 +2985,7 @@ function deselectAllPlanes(keepMain) {
         plane.updateFeatures(true);
     }
     if (SelectedAllPlanes) {
-        SelectedAllPlanes = false;
+        SelectedAllPlanes = !AlwaysSelectedAllPlanes;
         refreshFeatures();
     }
     if (!keepMain)
