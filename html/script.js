@@ -2414,7 +2414,7 @@ function refreshFeatures() {
         sort: function () { sortBy('vert_rate', compareNumeric, function(x) { return x.vert_rate; }); },
         value: function(plane) { return format_vert_rate_brief(plane.vert_rate, DisplayUnits); },
         align: 'right',
-        header: function () { return 'VRate(' + get_unit_label("verticalRate", DisplayUnits) + ')';},
+        header: function () { return 'VR' + get_unit_label("verticalRate", DisplayUnits);},
     };
     cols.distance = {
         text: pTracks ? 'Max. Distance' : 'Distance',
@@ -2432,7 +2432,8 @@ function refreshFeatures() {
         text: 'Messages',
         sort: function () { sortBy('msgs', compareNumeric, function(x) { return x.messages; }); },
         value: function(plane) { return plane.messages; },
-        align: 'right' };
+        align: 'right' ,
+        header: () => 'Msgs' };
     cols.seen = {
         text: 'Seen',
         sort: function () { sortBy('seen', compareNumeric, function(x) { return x.seen; }); },
