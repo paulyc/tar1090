@@ -9,10 +9,9 @@ let DOWN_TRIANGLE='\u25bc'; // U+25BC BLACK DOWN-POINTING TRIANGLE
 let TrackDirections = ["N","NE","E","SE","S","SW","W","NW"];
 let TrackDirectionArrows = ["\u21e7","\u2b00","\u21e8","\u2b02","\u21e9","\u2b03","\u21e6","\u2b01"];
 
-let metricAltitudeUnit = 'ft';
 let UnitLabels = {
-	altitude: { metric: metricAltitudeUnit, imperial: "ft", nautical: "ft"},
-	speed: { metric: "kph", imperial: "mph", nautical: "kt" },
+	altitude: { metric: (MetricAltitudeInFeet ? 'ft' : 'm'), imperial: "ft", nautical: "ft"},
+	speed: { metric: (MetricSpeedInMetersPerSecond ? 'm/s' : "kph"), imperial: "mph", nautical: "kt" },
 	distance: { metric: "km", imperial: "mi", nautical: "nm" },
 	verticalRate: { metric: "m/s", imperial: "fpm", nautical: "fpm" },
 	distanceShort: {metric: "m", imperial: "ft", nautical: "m"}
@@ -131,7 +130,7 @@ function format_onground (alt) {
 
 // alt in feet
 function convert_altitude(alt, displayUnits) {
-	if (displayUnits === "metric" && metricAltitudeUnit === 'm') {
+	if (displayUnits === "metric" && !MetricAltitudeInFeet) {
 		return alt * FeetPerMeter;  // feet to meters
 	}
 
