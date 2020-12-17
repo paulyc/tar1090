@@ -11,6 +11,11 @@ let no = false;
 let enabled = true;
 let disabled = false;
 
+let DefaultSelectedAllPlanes = true;
+let DefaultAlwaysSelectedAllPlanes = true;
+let DefaultMetricAltitudeInFeet = true;
+let DefaultMetricSpeedInMetersPerSecond = true;
+
 // -- Title Settings --------------------------------------
 // Show number of aircraft and/or messages per second in the page title
 let PlaneCountInTitle = false;
@@ -167,7 +172,7 @@ let ColorByAlt = {
 // Also called range rings :)
 let SiteCircles = true; // true to show circles (only shown if the center marker is shown)
 // In miles, nautical miles, or km (depending settings value 'DisplayUnits')
-let SiteCirclesDistances = new Array(10, 30, 50);
+let SiteCirclesDistances = new Array(2.5, 5, 10, 20, 30, 40, 50, 75, 100, 125, 150);
 // When more circles defined than cirle colors last color will be used or black by default
 let SiteCirclesColors = ['#000000', '#000000', '#000000'];
 // Show circles using dashed line (CAUTION, can be slow, especially when zooming in a lot)

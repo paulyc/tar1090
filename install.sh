@@ -14,6 +14,8 @@ db_repo="https://github.com/wiedehopf/tar1090-db"
 ipath=/usr/local/share/tar1090
 lighttpd=no
 nginx=no
+remote=origin
+branch=master
 
 mkdir -p $ipath
 
@@ -74,7 +76,7 @@ if (( $( { du -s "$ipath/git-db" 2>/dev/null || echo 0; } | cut -f1) > 150000 ))
 fi
 
 { [[ "$1" == "test" ]] && cd "$ipath/git-db" && git rev-parse; } ||
-    { cd "$ipath/git-db" &>/dev/null && git fetch --depth 1 origin master && git reset --hard FETCH_HEAD; } ||
+    { cd "$ipath/git-db" &>/dev/null && git fetch --depth 1 $remote $branch && git reset --hard FETCH_HEAD; } ||
     { cd && rm -rf "$ipath/git-db" && git clone --depth 1 "$db_repo" "$ipath/git-db"; }
 
 if ! cd $ipath/git-db || ! git rev-parse
@@ -95,7 +97,7 @@ then
     cd /tmp/tar1090-test
     TAR_VERSION=$(date +%s)
 else
-    { cd "$ipath/git" &>/dev/null && git fetch origin master && git reset --hard FETCH_HEAD; } ||
+    { cd "$ipath/git" &>/dev/null && git fetch $remote $branch && git reset --hard FETCH_HEAD; } ||
         { rm -rf "$ipath/git" && git clone --depth 1 "$repo" "$ipath/git"; }
 
     if ! cd $ipath/git || ! git rev-parse

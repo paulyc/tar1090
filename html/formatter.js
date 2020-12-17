@@ -18,6 +18,21 @@ let UnitLabels = {
 	distanceShort: {metric: "m", imperial: "ft", nautical: "m"}
 };
 
+const FurlongsPerStatuteMile = 8;
+const RodsPerFurlong = 40;
+const FeetPerRod = 16.5;
+const FeetPerFurlong = 660;
+const FeetPerStatuteMile = FeetPerFurlong * FurlongsPerStatuteMile;
+const MetersPerNauticalMile = 1852;
+const YardsPerMeter = 1250/1143;
+const FeetPerYard = 3;
+const FeetPerMeter = 1250/381;
+const FeetPerNauticalMile = FeetPerMeter * MetersPerNauticalMile;
+const SecondsPerHour = 3600;
+const MetersPerSecondPerKnot = MetersPerNauticalMile / SecondsPerHour;
+//const SquareFurlongsPerAcre = 1 * 0.1;
+//const SquareRodsPerAcre = 40 * 4;
+//const SquareFeetPerAcre = 660 * 66;
 
 
 // formatting helpers
@@ -117,7 +132,7 @@ function format_onground (alt) {
 // alt in feet
 function convert_altitude(alt, displayUnits) {
 	if (displayUnits === "metric" && metricAltitudeUnit === 'm') {
-		return alt / 3.2808;  // feet to meters
+		return alt * FeetPerMeter;  // feet to meters
 	}
 
 	return alt;
@@ -146,7 +161,7 @@ function format_speed_long(speed, displayUnits) {
 // speed in knots
 function convert_speed(speed, displayUnits) {
 	if (displayUnits === "metric") {
-		return speed * 1.852;  // knots to kilometers per hour
+		return MetricSpeedInMetersPerSecond ? speed * MetersPerSecondPerKnot : speed * (MetersPerNauticalMile/1000);  // knots to kilometers per hour
 	}
 	else if (displayUnits === "imperial") {
 		return speed * 1.151;  // knots to miles per hour
