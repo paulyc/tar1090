@@ -14,7 +14,7 @@
 // metric (m, km, km/h) or imperial (ft, mi, mph) units are used in the 
 // plane table and in the detailed plane info. Valid values are
 // "nautical", "metric", or "imperial".
-DisplayUnits = "nautical";
+//DisplayUnits = "nautical";
 
 // -- Map settings ----------------------------------------
 // These settings are overridden by any position information
