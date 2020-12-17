@@ -76,7 +76,7 @@ if (( $( { du -s "$ipath/git-db" 2>/dev/null || echo 0; } | cut -f1) > 150000 ))
 fi
 
 { [[ "$1" == "test" ]] && cd "$ipath/git-db" && git rev-parse; } ||
-    { cd "$ipath/git-db" &>/dev/null && git fetch --depth 1 $remote $branch && git reset --hard FETCH_HEAD; } ||
+    { cd "$ipath/git-db" &>/dev/null && git fetch --depth 1 "$remote" master && git reset --hard FETCH_HEAD; } ||
     { cd && rm -rf "$ipath/git-db" && git clone --depth 1 "$db_repo" "$ipath/git-db"; }
 
 if ! cd $ipath/git-db || ! git rev-parse
