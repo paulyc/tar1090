@@ -97,13 +97,8 @@ then
     cd /tmp/tar1090-test
     TAR_VERSION=$(date +%s)
 else
-<<<<<<< HEAD
-    { cd "$ipath/git" &>/dev/null && git fetch origin master && git reset --hard FETCH_HEAD; } ||
-        { cd /tmp && rm -rf "$ipath/git" && git clone --depth 1 "$repo" "$ipath/git"; }
-=======
     { cd "$ipath/git" &>/dev/null && git fetch $remote $branch && git reset --hard FETCH_HEAD; } ||
-        { rm -rf "$ipath/git" && git clone --depth 1 "$repo" "$ipath/git"; }
->>>>>>> 32bc332 (mess with units)
+        { cd /tmp && rm -rf "$ipath/git" && git clone --depth 1 "$repo" "$ipath/git"; }
 
     if ! cd $ipath/git || ! git rev-parse
     then
